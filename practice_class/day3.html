@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .parent{
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            position: relative;
+            margin: 5px 5px 5px 5px; /* top, rightm bottom, left 시계방향  margin-top도 가능 */
+            z-index: 100;
+            overflow: hidden; /* 부모를 벗어난 범위는 숨김 // 정말 많이 쓴다.. 왠만하면 다 넣음  */
+            
+        }
+        .child{
+            background-color: blue;
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 5px 5px 5px 5px; /* top, rightm bottom, left 시계방향  margin-top도 가능 */
+            position: absolute;
+            top : 30px;
+            left : 30px;
+            z-index: 1;
+            
+        }
+        
+
+        input[type=password] {
+            background-color: yellow;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Lorem ipsum dolor amet</h1>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+    <h1>Lorem ipsum dolor amet</h1>
+    <div class="box boxOdd"></div>
+ 
+    
+    id <input type="text"><br>
+    email <input type="text"><br>
+    password <input type="password"><br>
+
+
+</body>
+</html>
