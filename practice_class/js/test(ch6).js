@@ -154,12 +154,65 @@ function Person2(name,age){
     this.age = age;
     console.log("["+this.name+","+this.age+"]");
 }
-var p = new Person2("Tom",33);//새로운 객체 생성
-var p2 = Person2("Tim",22); //새로운 객체가 생성되지 않음
+// var p = new Person2("Tom",33);//새로운 객체 생성
+// var p2 = Person2("Tim",22); //새로운 객체가 생성되지 않음
 
 var p3={};
 var p4= new Object();
 // 6.9 call(), apply()로 this의 대상 변경
 // call(), apply(), bind()를 사용하면 this가 가리키는 대상을 변경할 수 있다.
-Person2.call(p3, "Sebin",11);
-Person2.apply(p3, ["Yebin",9]);
+// Person2.call(p3, "Sebin",11);
+// Person2.apply(p3, ["Yebin",9]);
+
+
+// 6.10 중첩된 함수에서의 this
+// 함수가 중첩되면, this의 의미가 달라진다. 별도의 변수에 this의 값을 저장
+// var myObj = {
+//     func1: function() {
+//         console.log(this); //myObj
+//         var func2 = function(){
+//             console.log(this); //window
+//                 var func3 = fuction(){
+//                     console.log(this); //window
+//                 }();
+//         }();
+//     }
+// }
+// myObj.func1();
+
+// var myObj = {
+//     myFunc : function() {
+//         var that = this; //this의 값을 that에 저장
+//         var myFunc2 = function(){
+//             console.log(that); //that은 myObj
+//             console.log(this); //this는 window
+//         }();
+//     }
+// }
+// myObj.myFunc();
+
+{/* <h1 onclick="this.innerHTML='Ooops!'"> Click on this text!</h1> */}
+
+
+// 6.12 객체의 속성에 접근 제한하기
+//생성자의 변수를 지역변수로  선언하여 접근을 제한, 대신 getter를 제공
+function Person(name,age){
+    //this.name = name;
+    //this.age = age;
+    var name= name; //지역변수로 선언
+    var age =age; //지역변수로 선언
+
+    this.getName = function(){
+        return name;
+    }
+    this.getAge = function(){
+        return age;
+    }
+}
+var p = new Person("asdf",10);
+
+console.log(p.getName()); //"asdf"
+console.log(p.getAge()); //10
+
+console.log(p.name); // undefined. 지역변수에 접근할수 없음
+console.log(p.age); //undefined. 지역변수에 접근할 수 없음
