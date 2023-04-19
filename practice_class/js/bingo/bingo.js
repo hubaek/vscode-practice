@@ -11,10 +11,12 @@ bingo.sort(function(a,b){return Math.random()-0.5});    // bingo 배열 shuffle�
 // shuffle(bingo);
 console.log(bingo)
 
-for(var i = 0; i<bingo.length; i++){
-    var cell = document.getElementById(i);
-    cell.innerHTML = bingo[i];
+for(var i = 0; i<bingo.length; i++){    
+    var cell = document.getElementById(i);  // td의 id값을 가져와서 cell변수에 대입
+    cell.innerHTML = bingo[i];              // 셔플한 bingo[i]를 td = id(i)에 넣어준다.
 }
+
+// id값 동적으로 만들기. 
 
 
 // document.getElementById("xxx") --html element 가져오기
