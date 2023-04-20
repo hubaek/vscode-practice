@@ -195,7 +195,7 @@ var p4= new Object();
 
 
 // 6.12 객체의 속성에 접근 제한하기
-//생성자의 변수를 지역변수로  선언하여 접근을 제한, 대신 getter를 제공
+// 생성자의 변수를 지역변수로  선언하여 접근을 제한, 대신 getter를 제공
 function Person(name,age){
     //this.name = name;
     //this.age = age;
@@ -211,8 +211,29 @@ function Person(name,age){
 }
 var p = new Person("asdf",10);
 
-console.log(p.getName()); //"asdf"
-console.log(p.getAge()); //10
+// console.log(p.getName()); //"asdf"
+// console.log(p.getAge()); //10
 
-console.log(p.name); // undefined. 지역변수에 접근할수 없음
-console.log(p.age); //undefined. 지역변수에 접근할 수 없음
+// console.log(p.name); // undefined. 지역변수에 접근할수 없음
+// console.log(p.age); //undefined. 지역변수에 접근할 수 없음
+
+
+// 6.13 두 객체간의 상속관계 맺어주기
+// Person객체와 Manager객체를 조상 자손관계로 맺어주는 방법
+function Person(name,age){
+    this.name = name;
+    this.age = age;
+}
+function Manager(dept,name,age){
+    Person.call(this, name, age); //조상의 생성자를 호출
+    this.dept = dept;
+}
+
+var m = new Manager('Sales','asdf',12);
+
+console.log(m.age, m.dept, m.name); //12
+console.log(m instanceof Person); //false
+Manager.prototype.__proto__ = Person.prototype;
+
+var m2 = new Manager('Sales','asdf',12);
+console.log(m instanceof Person); //true
