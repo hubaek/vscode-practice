@@ -16,54 +16,70 @@
     <input type="checkbox" name="야구" value="야구">야구
     <input type="checkbox" name="배구" value="배구">배구<br>
 
-    <textarea id="message" name="message" rows="4" cols="50">
-    textarea 영역 입니다.
-    </textarea>
+    <textarea id="message" name="message" rows="4" cols="50"></textarea>
 
       
     
     <script>
         window.onload = function(){
-            // 1번 태그에 대한 참조를 얻어온다.
+            // 1번) 태그에 대한 참조를 얻어온다.
             let inputarr = document.getElementsByTagName("input");
             let textarea = document.getElementById("message");
         
             // 2번) 태그에 이벤트를 등록한다.
+            
+            // 3번) input의 value값을 가져온다.
+            // inputarr[1].value;   // input 2번째 줄의 value값
+            
+            // 3-1 checked된 value의 값만 가져온다.(if checked true안에 들어가면 됨)
+            // textarea에 값을 보내는 방법
+            // textarea.value = 값
+            // value 값을 가져온 것을 textarea에 보냄
+            // textarea.value = inputarr[1].value;
+
+            // inputarr[n].onclick을 할 시에 값이 전송이 되어야함
+            // function(){}안에 들어가야할듯
+            // 그러면 전체를 체크했을때 값을 전송하려면 반복문안에 있어야하나?
+            // textarea에 글이 들어가려면 textContent, value 이런게 있음 
+            // defaultvalue는 내가 html에서 적어준 내용이 들어있음
+
+            // 
+
             inputarr[0].onclick = function() {
                 // alert("hello");
                 // 체크가 되면 true 아니면 false
                 // 클릭을 하면 inputarr 배열이 모두 체크가 되어야 한다.
                
                 if(inputarr[0].checked == true){
+                    // inputarr[1].checked = true;
+                    // inputarr[2].checked = true;
+                    // inputarr[3].checked = true;
+                    // inputarr[4].checked = true;
+                    // textarea.value += inputarr[1].value;
+                    // textarea.value += inputarr[2].value;
+                    // textarea.value += inputarr[3].value;
+                    // textarea.value += inputarr[4].value;
+                    
                     for(i=1;i<5;i++){
                         inputarr[i].checked = true;
+                        textarea.value += inputarr[i].value;
                     }
                 } else if (inputarr[0].checked == false){
+                    // inputarr[1].checked = false;
+                    // inputarr[2].checked = false;
+                    // inputarr[3].checked = false;
+                    // inputarr[4].checked = false;
                     for(i=1;i<5;i++){
                         inputarr[i].checked = false;
+                        // textarea.value -= inputarr[i].value;
+                        // textarea.value가 문자열이기 때문에 -=는 숫자형 데이터에 사용해서
+                        // 마지막에 NAN반환. replace()로 문자열 제거
+                        textarea.value = textarea.value.replace(inputarr[i].value,"");    
                     }
                 }
-                // inputarr[1].checked = true;
-                // inputarr[2].checked = true;
-                // inputarr[3].checked = true;
-                // inputarr[4].checked = true;
-
-                // inputarr[1].checked = false;
-                // inputarr[2].checked = false;
-                // inputarr[3].checked = false;
-                // inputarr[4].checked = false;
-
             }
-            
-
-
         }
-
-        // let message = document.getElementById('message');
-        // message.onclick = function() {alert("hello");}
-
-        // let all = document.getElementsByTagName('input');
-        // all.onclick = function() {alert("hello");}
+        
         
     </script>
 </body>
