@@ -63,15 +63,44 @@
                     }
                 }
             }
-            for(let j=1;j<=4;j++){
-                inputarr[j].onclick = function(){
-                    if(inputarr[j].checked == true) {
-                    textarea.value += inputarr[j].value;
-                } else if(inputarr[j].checked == false) {
-                    textarea.value = textarea.value.replace(inputarr[j].value,"");
-                } 
-                }
+
+            // for(let j=1;j<=4;j++){
+            //     inputarr[j].onclick = function(){
+            //         if(inputarr[j].checked == true) {
+            //         textarea.value += inputarr[j].value;
+            //     } else if(inputarr[j].checked == false) {
+            //         textarea.value = textarea.value.replace(inputarr[j].value,"");
+            //     } 
+            //     }
+            // }
+
+
+            // function 이름 으로 분리 , [1]체크
+            // function oneclick_1(){
+            //     if(inputarr[1].checked == true) {
+            //         textarea.value += inputarr[1].value;
+            //     } else if(inputarr[1].checked == false) {
+            //         textarea.value = textarea.value.replace(inputarr[1].value,"");
+            //     } 
+            // }
+            // inputarr[1].onclick = oneclick_1;
+            
+            for(let j=1; j<=4; j++) {
+                // let tmp = j;
+                // inputarr[j].onclick = oneclick_roop(tmp);
+                inputarr[j].onclick = oneclick_roop;
             }
+
+            function oneclick_roop(){
+                if(this.checked == true) {
+                    textarea.value += this.value;
+                } else if(this.checked == false) {
+                    textarea.value = textarea.value.replace(this.value,"");
+                } 
+            }
+
+            
+
             // inputarr[1].onclick = function() {
             //     // 개별 체크 및 해제 기능 구현해야함
             //     // 1. inputarr[1]을 체크를 하면 inputarr[1].value가
