@@ -10,10 +10,10 @@
 </head>
 <body>
     <!-- <div id="textarea"></div> -->
-    <input type="checkbox" name="전체" value="전체">전체
-    <input type="checkbox" name="축구" value="축구">축구
-    <input type="checkbox" name="농구" value="농구">농구
-    <input type="checkbox" name="야구" value="야구">야구
+    <input type="checkbox" name="전체" value="전체">전체<br>
+    <input type="checkbox" name="축구" value="축구">축구<br>
+    <input type="checkbox" name="농구" value="농구">농구<br>
+    <input type="checkbox" name="야구" value="야구">야구<br>
     <input type="checkbox" name="배구" value="배구">배구<br>
 
     <textarea id="message" name="message" rows="4" cols="50"></textarea>
@@ -42,43 +42,70 @@
             // 그러면 전체를 체크했을때 값을 전송하려면 반복문안에 있어야하나?
             // textarea에 글이 들어가려면 textContent, value 이런게 있음 
             // defaultvalue는 내가 html에서 적어준 내용이 들어있음
-
-            // 
-
             inputarr[0].onclick = function() {
                 // alert("hello");
                 // 체크가 되면 true 아니면 false
                 // 클릭을 하면 inputarr 배열이 모두 체크가 되어야 한다.
                
-                if(inputarr[0].checked == true){
-                    // inputarr[1].checked = true;
-                    // inputarr[2].checked = true;
-                    // inputarr[3].checked = true;
-                    // inputarr[4].checked = true;
-                    // textarea.value += inputarr[1].value;
-                    // textarea.value += inputarr[2].value;
-                    // textarea.value += inputarr[3].value;
-                    // textarea.value += inputarr[4].value;
-                    
+                if(inputarr[0].checked == true){   
                     for(i=1;i<5;i++){
                         inputarr[i].checked = true;
                         textarea.value += inputarr[i].value;
                     }
                 } else if (inputarr[0].checked == false){
-                    // inputarr[1].checked = false;
-                    // inputarr[2].checked = false;
-                    // inputarr[3].checked = false;
-                    // inputarr[4].checked = false;
                     for(i=1;i<5;i++){
                         inputarr[i].checked = false;
                         // textarea.value -= inputarr[i].value;
                         // textarea.value가 문자열이기 때문에 -=는 숫자형 데이터에 사용해서
                         // 마지막에 NAN반환. replace()로 문자열 제거
-                        textarea.value = textarea.value.replace(inputarr[i].value,"");    
+                        textarea.value = '';
+                        // textarea.value.replace(inputarr[i].value,"");    
                     }
                 }
             }
+            inputarr[1].onclick = function() {
+                // 개별 체크 및 해제 기능 구현해야함
+                // 1. inputarr[1]을 체크를 하면 inputarr[1].value가
+                // textarea.value에 들어가야함 
+                // 일단 if문 4개 하드코딩. 
+                // 4. 아.. if문 조건에 or을 쓰면 1또는2또는3또는4가 체크일때 란 조건은 되는데
+                // 음..내용은 1,2가 체크면 1,2가 다 들어가야하는데.. 어떻게 적어야하지?
+                // console.log(inputarr[1].checked);
+                // console.log(textarea.value);
+                if(inputarr[1].checked == true) {
+                    // console.log(inputarr[1].checked);
+                    // console.log(textarea.value);
+                    textarea.value += inputarr[1].value;
+                } else if(inputarr[1].checked == false) {
+                    // console.log(inputarr[1].checked);
+                    // console.log(inputarr[1].value)
+                    // console.log(textarea.value = textarea.value.replace(inputarr[1].value,""));
+                    textarea.value = textarea.value.replace(inputarr[1].value,""); 
+                }   
+            }
+            inputarr[2].onclick = function() {
+                if(inputarr[2].checked == true) {
+                    textarea.value += inputarr[2].value;
+                } else if(inputarr[2].checked == false) {
+                    textarea.value = textarea.value.replace(inputarr[2].value,"");
+                }   
+            }
+            inputarr[3].onclick = function() {
+                if(inputarr[3].checked == true) {
+                    textarea.value += inputarr[3].value;
+                } else if(inputarr[3].checked == false) {
+                    textarea.value = textarea.value.replace(inputarr[3].value,"");
+                }   
+            }
+            inputarr[4].onclick = function() {
+                if(inputarr[4].checked == true) {
+                    textarea.value += inputarr[4].value;
+                } else if(inputarr[4].checked == false) {
+                    textarea.value = textarea.value.replace(inputarr[4].value,"");
+                }   
+            }
         }
+        
         
         
     </script>
