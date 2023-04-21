@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+
+<style>
+
+    img {
+    width: 120px;
+    height: 180px;
+    }
+
+</style>
+</head>
+<body>
+
+<button id="showBtn">show</button>
+<button id="hideBtn">hide</button>
+<button id="shuffleBtn">shuffle</button>
+<br><br>
+
+<div id="board">
+<!-- 카드를 보여줄 곳 -->
+<img src="./card_Img/1.png" alt="">
+<img src="./card_Img/back.png" alt="">
+
+</div>
+
+<script>
+window.onload = function() {
+// 코드를 작성
+// 1. card를 저장할 배열을 만든다.
+initGame();
+startGame();
+
+}
+
+function initGame(){
+    // 1. card를 담을 배열을 만든다.
+    let cardArr = [];
+    // 2. 배열을 초기화 하고
+
+    // 3. 배열을 섞는다.
+
+    // 4. 카드를 div#board에 보여준다.
+
+    // 5. 각 카드에 click이벤트를 등록한다.
+    let imgArr = document.getElementsByTagName("img");
+
+    for(let i=0;i<imgArr.length;i++) {
+        imgArr[i].onclick = cardClick;
+    }
+}
+
+// card가 앞면이면 true 아니면 flase를 반환
+function isFront(card){
+    return false;
+}
+
+// card를 뒤집는다.
+function flip(card){
+
+}
+
+function cardClick() {
+    // 1. 카드가 앞면인지 확인한다.
+    let card = this;
+    if(isFront(card)){
+        return;
+    } else {
+        flip(card);
+    }
+    // 1-1. 앞면이면 return
+    // 1-2. 뒷면이면 뒤집는다.
+}
+
+</script>
+</body>
+</html>
