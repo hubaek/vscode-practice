@@ -48,12 +48,12 @@
                 // 클릭을 하면 inputarr 배열이 모두 체크가 되어야 한다.
                
                 if(inputarr[0].checked == true){   
-                    for(i=1;i<5;i++){
+                    for(let i=1;i<5;i++){
                         inputarr[i].checked = true;
                         textarea.value += inputarr[i].value;
                     }
                 } else if (inputarr[0].checked == false){
-                    for(i=1;i<5;i++){
+                    for(let i=1;i<5;i++){
                         inputarr[i].checked = false;
                         // textarea.value -= inputarr[i].value;
                         // textarea.value가 문자열이기 때문에 -=는 숫자형 데이터에 사용해서
@@ -85,10 +85,10 @@
             // }
             // inputarr[1].onclick = oneclick_1;
             
-            for(let j=1; j<=4; j++) {
+            for(let i=1; i<=4; i++) {
                 // let tmp = j;
                 // inputarr[j].onclick = oneclick_roop(tmp);
-                inputarr[j].onclick = oneclick_roop;
+                inputarr[i].onclick = oneclick_roop;
             }
 
             function oneclick_roop(){
