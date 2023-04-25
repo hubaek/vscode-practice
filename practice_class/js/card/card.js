@@ -13,26 +13,29 @@ initGame();
 // startGame();
 
 let startBtn = document.getElementById("startGameBtn");
-let showBtn= document.getElementById("showBtn");
-let shuffleBtn= document.getElementById("shuffleBtn");
-let flipBtn = document.getElementById("flipBtn");
-let hideBtn = document.getElementById("hideBtn");
+// let showBtn= document.getElementById("showBtn");
+// let shuffleBtn= document.getElementById("shuffleBtn");
+// let flipBtn = document.getElementById("flipBtn");
+// let hideBtn = document.getElementById("hideBtn");
 
 // 게임시작 버튼을 누르면 startGame() 함수 호출
 startBtn.onclick = startGame;
-showBtn.onclick = show;
-shuffleBtn.onclick = shuffle;
+// 보이기 버튼
+// showBtn.onclick = show;
+// 숨기기 버튼
+// hideBtn.onclick = hide;
+// 섞기 버튼
+// shuffleBtn.onclick = shuffle;
 // flipBtn.onclick = flip;
-hideBtn.onclick = hide;
+
 
 
 // shuffleBtn.addEventListener('click', shuffle);
 
 }
-// 게임 세팅 
+// 게임 세팅 - 카드를 섞어서 보여주고 외울 수 있게 한다.
 function initGame(){
-    // 게임 세팅은 카드를 순서대로 나열해서 보여준다.
-    // 게임 시작을 누르면 카드가 섞이고 카드가 뒤집힌다.
+    // 게임 시작을 누르면 카드가 뒤집힌다.
     // 1. card를 담을 배열을 만든다.
     cardArr = [];
     // 2. 배열을 초기화 하고  0~51의 숫자 
@@ -44,36 +47,35 @@ function initGame(){
     // 3. 배열을 섞는다.
     // cardArr.sort(function(a,b){return Math.random()-0.5}); 
     // 4. 카드를 div#board에 보여준다.
-    // innerHTML = `<<img src="${img[i].src}">`
     // console.log(cardArr);
     for(let i=0; i<=51; i++){
         board.innerHTML += `<img src="${cardArr[i].src}">`;
     }
-    // 5. 각 카드에 click이벤트를 등록한다. -> startGame()으로
-    // let imgArr = document.getElementsByTagName("img");
-
-    // for(let i=0; i<imgArr.length; i++) {
-    //     imgArr[i].onclick = cardClick;
-    // }
 }
 function startGame(){
-    alert("게임을 시작합니다!");
-    // console.log(cardArr);
-    // 카드(배열)를 섞는다
-    cardArr.sort(function(a,b){return Math.random()-0.5}); 
-    // 카드를 섞고 카드를 뒤집는다
-    // console.log(cardArr);
+    // alert("게임을 시작합니다!");
+    // 카드를 뒤집는다
     board.innerHTML = "";
     for(let i=0; i<=51; i++){
-        board.innerHTML += `<img src="${cardArr[i].src}">`;
+        board.innerHTML += `<img src="${backCard.src}">`;
     }
+    console.log(cardArr);
     // console.log(board.innerHTML);
     // 5. 각 카드에 click이벤트를 등록한다.
-    let imgArr = document.getElementsByTagName("img");
-    for(let i=0; i<cardArr.length; i++) {
-        cardArr[i].onclick = cardClick;
-        // console.log(imgArr[i]);
+    imgArr = document.getElementsByTagName("img");
+    for(let i=0; i<imgArr.length; i++) {
+        imgArr[i].onclick = cardClick;
     }
+    showBtn= document.getElementById("showBtn");
+    shuffleBtn= document.getElementById("shuffleBtn");
+    hideBtn = document.getElementById("hideBtn");
+    // 보이기 버튼
+    showBtn.onclick = show;
+    // 숨기기 버튼
+    hideBtn.onclick = hide;
+    // 섞기 버튼
+    shuffleBtn.onclick = shuffle;
+    // flipBtn.onclick = flip;
     
 }
 // 카드를 보여주는 함수
@@ -82,6 +84,9 @@ function show(){
     board.innerHTML = "";
     for(let j=0; j<=51; j++){
         board.innerHTML += `<img src="${cardArr[j].src}">`;
+    }
+    for(let i=0; i<imgArr.length; i++) {
+        imgArr[i].onclick = cardClick;
     }
 }
 // 카드를 섞어주는 함수
@@ -100,11 +105,17 @@ function hide() {
     for(let j=0; j<=51; j++){
         board.innerHTML += `<img src="${backCard.src}">`;
     }
+    for(let i=0; i<imgArr.length; i++) {
+        imgArr[i].onclick = cardClick;
+    }
 }
 
 // card가 앞면이면 true 아니면 false를 반환
 function isFront(card){
-    if(cardArr[0] <= this && this <= cardArr[51]){
+    // console.log(card);  
+    // console.log(imgArr[52]);
+    // console.log(imgArr[52]);
+    if(!(card.src==imgArr[52].src)){
         return true;
     } else {
         return false;
@@ -113,17 +124,22 @@ function isFront(card){
 }
 
 // card를 뒤집는다.
-// '<img src="${backCard.src}">' = `<img src="${card.src}">`;
-// 지금 현재 startGame에 뿌려진 뒷면은 동일한 backCard(back.png)
-// 하드코딩 : back(52~103)배열 생성 후 
 function flip(card){
     console.log(isFront(card));
+    // 스페이드 에이스가 보이게한다.(아무카드나)
+    // card.src = cardArr[0].src;
+    // 1번을 누르면 imgArr[0].onclick이 넘어와서 imgArr[0]=>this=>card가 되어 
+    // card.src=cardArr[0].src인데..
+    // imgArr[i]와 cardArr[i]를 어떻게 맞춰주지??
     
 }
-
+// 막혔다
+// 잘안된다.
+// 뭐가 안되지? - 클릭하면 카드가 뒤집혀지는게 안된다.
+// 왜 안될까? - 
 function cardClick() {
     // 1. 카드가 앞면인지 확인한다.
-    console.log(this);
+    // console.log(this);
     let card = this;
     if(isFront(card)){
         return;
